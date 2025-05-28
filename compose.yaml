@@ -1,0 +1,30 @@
+services:
+  server:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "25567:25565"
+    environment:
+      EULA: TRUE
+      VERSION: 1.21.5
+
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 1.0.3
+      FABRIC_LOADER_VERSION: 0.16.14
+
+      INIT_MEMORY: 2G
+      MAX_MEMORY: 10G
+      
+      ALLOW_FLIGHT: true
+      MOTD: "\u00A76Snake SMP\u00A7r\n\u00A77Survival Vanilla"
+      DIFFICULTY: hard
+      ENABLE_COMMAND_BLOCK: true
+      SPAWN_PROTECTION: 0
+      VIEW_DISTANCE: 32
+      SEED: "-8884663891400755025"
+      ENABLE_WHITELIST: true
+    volumes:
+      - ./data:/data
+      - ./mods:/data/mods
+      - ./datapacks:/data/world/datapacks

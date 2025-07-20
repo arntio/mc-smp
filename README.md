@@ -6,10 +6,11 @@
 From: https://modrinth.com/
 
 - Fabric API
-- Ferrite Core
+- Ferrite Core (Needs to update)
+- Click Villagers
 - Lithium
-- Noisium
-- Chunky
+- Noisium (Needs to update)
+- Chunky (Needs to update)
 
 ### Crafting Tweaks
 From: https://vanillatweaks.net/

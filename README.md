@@ -6,11 +6,16 @@
 From: https://modrinth.com/
 
 - Fabric API
-- Ferrite Core (Needs to update)
+- Ferrite Core
 - Click Villagers
 - Lithium
+- Servux
+
+<!-- Mods not present because they're not updated to 1.21.8 -->
 - Noisium (Needs to update)
-- Chunky (Needs to update)
+
+From: https://github.com/gnembon/fabric-carpet
+- Carpet
 
 ### Crafting Tweaks
 From: https://vanillatweaks.net/
@@ -58,13 +63,11 @@ Convenience
 - Spectator Conduit Power
 - Spectator Night Vision
 - Storm Channeling
-- Timber
 - Unlock All Recipes
 
 Gameplay Changes
 - Armored Elytra
 - XP Bottling
-- Silk Touch Budding Amethyst
 - Confetti Creepers
 
 Informative
@@ -75,3 +78,8 @@ Informative
 Admin Tools
 - Kill Empty Boats
 - Custom Villager Shops
+
+From: https://github.com/Moggla/Timber-Datapack
+
+Convenience
+- Timber

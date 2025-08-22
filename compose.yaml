@@ -16,8 +16,11 @@ services:
       INIT_MEMORY: 2G
       MAX_MEMORY: 10G
       
-      ALLOW_FLIGHT: true
+      OVERRIDE_ICON: true
+      ICON: /assets/snake_logo.png
       MOTD: "\u00A76Snake SMP\u00A7r\n\u00A77Survival Vanilla"
+
+      ALLOW_FLIGHT: true
       DIFFICULTY: hard
       ENABLE_COMMAND_BLOCK: true
       SPAWN_PROTECTION: 0
@@ -28,3 +31,4 @@ services:
       - ./data:/data
       - ./mods:/data/mods
       - ./datapacks:/data/world/datapacks
+      - ./assets:/assets

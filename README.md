@@ -64,6 +64,7 @@ Convenience
 - Spectator Night Vision
 - Storm Channeling
 - Unlock All Recipes
+- Timber
 
 Gameplay Changes
 - Armored Elytra
@@ -78,8 +79,3 @@ Informative
 Admin Tools
 - Kill Empty Boats
 - Custom Villager Shops
-
-From: https://github.com/Moggla/Timber-Datapack
-
-Convenience
-- Timber

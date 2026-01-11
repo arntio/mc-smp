@@ -7,11 +7,11 @@ services:
       - "25567:25565"
     environment:
       EULA: TRUE
-      VERSION: 1.21.8
+      VERSION: 1.21.11
 
       TYPE: FABRIC
-      FABRIC_LAUNCHER_VERSION: 1.0.3
-      FABRIC_LOADER_VERSION: 0.16.14
+      FABRIC_LAUNCHER_VERSION: 1.1.1
+      FABRIC_LOADER_VERSION: 0.18.4
 
       INIT_MEMORY: 2G
       MAX_MEMORY: 10G

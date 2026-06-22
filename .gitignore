@@ -1,2 +1,9 @@
 data
 .DS_Store
+
+# Local secrets for compose.prod.yaml
+.env
+
+# Local build / download output
+out/
+update-summary.md

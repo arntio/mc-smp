@@ -27,11 +27,18 @@ jobs:
           cd tools
           go run . lock --root .. --upgrade --summary ../update-summary.md
 
+      - name: Compute branch suffix
+        id: branch
+        run: |
+          # CalVer date base, same scheme as the release tag. Re-runs on the
+          # same day reuse the branch (and its PR); a new day opens a fresh one.
+          echo "name=update/v$(date -u +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
+
       - name: Open / update pull request
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: auto-update
+          branch: ${{ steps.branch.outputs.name }}
           delete-branch: true
           title: "chore: update mods, datapacks & versions"
           body-path: update-summary.md

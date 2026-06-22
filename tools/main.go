@@ -5,6 +5,7 @@
 //
 //	lock      resolve manifest.yaml -> manifest.lock
 //	check     dry-run resolve and print the version diff (no writes)
+//	diff      print the version-diff summary between two lock files
 //	download  fetch the locked artifacts into an output directory (used by the build)
 //	backup    snapshot the world to Cloudflare R2 (daily, player-gated, keep last N)
 package main
@@ -27,6 +28,8 @@ func main() {
 		cmdLock(os.Args[2:], false)
 	case "check":
 		cmdLock(os.Args[2:], true)
+	case "diff":
+		cmdDiff(os.Args[2:])
 	case "download":
 		cmdDownload(os.Args[2:])
 	case "backup":
@@ -37,8 +40,14 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: updater <lock|check|download|backup> [flags]")
+	fmt.Fprintln(os.Stderr, "usage: updater <lock|check|diff|download|backup> [flags]")
 	os.Exit(2)
+}
+
+// summaryBody wraps a diff table in the markdown block shared by the
+// auto-update PR body and the release notes, so the two always match.
+func summaryBody(table string) string {
+	return "## Update summary\n\n" + table + "\n"
 }
 
 func cmdLock(args []string, dryRun bool) {
@@ -76,8 +85,7 @@ func cmdLock(args []string, dryRun bool) {
 		log.Fatalf("sync manifest: %v", err)
 	}
 	if *summary != "" {
-		body := "## Update summary\n\n" + table + "\n"
-		if err := os.WriteFile(*summary, []byte(body), 0o644); err != nil {
+		if err := os.WriteFile(*summary, []byte(summaryBody(table)), 0o644); err != nil {
 			log.Fatalf("write summary: %v", err)
 		}
 	}
@@ -86,6 +94,25 @@ func cmdLock(args []string, dryRun bool) {
 	} else {
 		log.Println("lock already current")
 	}
+}
+
+// cmdDiff prints the version-diff summary between two lock files. Used by the
+// release workflow to regenerate the same table the auto-update PR carried,
+// comparing the previous release's lock against the merged one. A missing or
+// empty --old is treated as the first lock (everything shown as new).
+func cmdDiff(args []string) {
+	fs := flag.NewFlagSet("diff", flag.ExitOnError)
+	oldPath := fs.String("old", "", "previous manifest.lock (missing/empty = first lock)")
+	newPath := fs.String("new", "manifest.lock", "current manifest.lock")
+	_ = fs.Parse(args)
+
+	newLock, err := loadLock(*newPath)
+	if err != nil {
+		log.Fatalf("load new lock: %v", err)
+	}
+	oldLock, _ := loadLock(*oldPath) // missing/empty -> nil, treated as first lock
+	table, _ := diffLocks(oldLock, newLock)
+	fmt.Print(summaryBody(table))
 }
 
 func cmdDownload(args []string) {

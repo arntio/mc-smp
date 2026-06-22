@@ -28,6 +28,7 @@ jobs:
           go run . lock --root .. --upgrade --summary ../update-summary.md
 
       - name: Open / update pull request
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           branch: auto-update
@@ -38,3 +39,25 @@ jobs:
           add-paths: |
             manifest.yaml
             manifest.lock
+
+      - name: Notify Discord
+        if: steps.cpr.outputs.pull-request-number
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          # update-summary.md holds the same changelog table as the PR body.
+          # Discord embed descriptions cap at 4096 chars; trim to stay under.
+          desc=$(head -c 4000 update-summary.md)
+          jq -n \
+            --arg url "$PR_URL" \
+            --arg num "$PR_NUMBER" \
+            --arg desc "$desc" \
+            '{embeds: [{
+               title: "⬆️ Update PR #\($num) ready",
+               url: $url,
+               description: $desc,
+               color: 5763719
+             }]}' \
+          | curl -fsS -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK_URL"

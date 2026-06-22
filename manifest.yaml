@@ -3,10 +3,10 @@
 # bakes exactly what the lock pins. See README.md.
 
 # Target MC version. Auto-bumped only when ALL mods have a compatible build.
-minecraft: "1.21.11"
+minecraft: "26.2"
 
 fabric:
-  loader: "0.18.4"
+  loader: "0.19.3"
   installer: "1.1.1"
 
 # Mods are Modrinth project slugs. The newest fabric build for the MC version
@@ -21,7 +21,7 @@ mods:
 
 vanillatweaks:
   # VT MC family, kept in sync with the MC version by the updater.
-  version: "1.21"
+  version: "26.2"
   # Exact Vanilla Tweaks pack names: https://vanillatweaks.net/picker/datapacks/
   datapacks:
     - "afk display"

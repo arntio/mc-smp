@@ -1,0 +1,68 @@
+# manifest.yaml — human intent. Edit this file to add/remove mods or packs,
+# then open a PR. The updater resolves it into manifest.lock and the image
+# bakes exactly what the lock pins. See README.md.
+
+# Target MC version. Auto-bumped only when ALL mods have a compatible build.
+minecraft: "1.21.11"
+
+fabric:
+  loader: "0.18.4"
+  installer: "1.1.1"
+
+# Mods are Modrinth project slugs. The newest fabric build for the MC version
+# is pinned in manifest.lock.
+mods:
+  - fabric-api
+  - lithium
+  - ferrite-core
+  - servux
+  - clickvillagers
+  - carpet
+
+vanillatweaks:
+  # VT MC family, kept in sync with the MC version by the updater.
+  version: "1.21"
+  # Exact Vanilla Tweaks pack names: https://vanillatweaks.net/picker/datapacks/
+  datapacks:
+    - "afk display"
+    - "anti enderman grief"
+    - "armor statues"
+    - "armored elytra"
+    - "cauldron concrete"
+    - "cauldron mud"
+    - "custom villager shops"
+    - "double shulker shells"
+    - "durability ping"
+    - "fast leaf decay"
+    - "kill empty boats"
+    - "more effective tools"
+    - "multiplayer sleep"
+    - "name colors"
+    - "painting picker"
+    - "player head drops"
+    - "silence mobs"
+    - "spectator conduit power"
+    - "spectator night vision"
+    - "storm channeling"
+    - "timber"
+    - "unlock all recipes"
+    - "xp bottling"
+  # Crafting tweaks are combined into a single datapack by Vanilla Tweaks.
+  craftingtweaks:
+    - "back to blocks"
+    - "blackstone cobblestone"
+    - "charcoal to black dye"
+    - "coal to black dye"
+    - "copper powered rails"
+    - "craftable coral blocks 2x2"
+    - "craftable gravel"
+    - "craftable notch apples"
+    - "dropper to dispenser"
+    - "powder to glass"
+    - "rotten flesh to leather"
+    - "sandstone dyeing"
+    - "straight to shapeless"
+    - "universal dyeing"
+    - "unpackable ice"
+    - "unpackable nether wart"
+    - "unpackable wool"

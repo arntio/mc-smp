@@ -1,0 +1,62 @@
+name: Validate
+
+# Build the standalone image (this also proves every locked download resolves
+# and the sha512s match) and boot the server to confirm it starts cleanly.
+# Make this the required status check in branch protection for `main`.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-boot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        run: ./build.sh --load -t mc-smp:test .
+
+      - name: Boot server & smoke test
+        run: |
+          mkdir -p "$RUNNER_TEMP/mcdata"
+          docker run -d --name mc \
+            -e EULA=TRUE -e ENABLE_WHITELIST=false \
+            -v "$RUNNER_TEMP/mcdata:/data" \
+            mc-smp:test
+
+          echo "Waiting for the server to become healthy..."
+          ok=0
+          for i in $(seq 1 60); do
+            status=$(docker inspect -f '{{.State.Health.Status}}' mc 2>/dev/null || echo starting)
+            echo "[$i] health=$status"
+            if [ "$status" = "healthy" ]; then ok=1; break; fi
+            if [ -z "$(docker ps -q -f name=mc)" ]; then echo "container exited early"; break; fi
+            sleep 10
+          done
+
+          docker logs mc > server.log 2>&1 || true
+          echo "::group::server log (tail)"; tail -n 120 server.log; echo "::endgroup::"
+
+          if [ "$ok" != "1" ]; then
+            echo "::error::server did not become healthy"; exit 1
+          fi
+
+          # World responds over RCON.
+          docker exec mc rcon-cli list
+
+          # Fail on severe log errors.
+          if grep -E "/ERROR\]|Caused by:" server.log; then
+            echo "::error::errors found in server log"; exit 1
+          fi
+
+          docker exec mc rcon-cli stop || true
+          echo "Server booted cleanly."
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f mc || true

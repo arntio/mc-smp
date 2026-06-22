@@ -1,34 +1,63 @@
+# Production compose for the live server. Pulls the published, self-contained
+# image (mods/datapacks/versions all baked in) and persists world/whitelist/bans
+# in the ./data volume. Updating the server is just:
+#
+#   docker compose -f compose.prod.yaml pull
+#   docker compose -f compose.prod.yaml up -d
+#
+# Secrets (RCON password + Cloudflare R2 credentials) come from a .env file next
+# to this one — see .env.example.
 services:
   server:
-    image: itzg/minecraft-server:stable
+    image: ghcr.io/arntio/mc-smp:latest
     tty: true
     stdin_open: true
+    restart: unless-stopped
     ports:
       - "25567:25565"
     environment:
-      EULA: TRUE
-      VERSION: 1.21.11
-
-      TYPE: FABRIC
-      FABRIC_LAUNCHER_VERSION: 1.1.1
-      FABRIC_LOADER_VERSION: 0.18.4
-
-      INIT_MEMORY: 2G
-      MAX_MEMORY: 10G
-      
-      OVERRIDE_ICON: true
-      ICON: /assets/snake_logo.png
-      MOTD: "\u00A76Snake SMP\u00A7r\n\u00A77Survival Vanilla"
-
-      ALLOW_FLIGHT: true
-      DIFFICULTY: hard
-      ENABLE_COMMAND_BLOCK: true
-      SPAWN_PROTECTION: 0
-      VIEW_DISTANCE: 32
-      SEED: "-8884663891400755025"
-      ENABLE_WHITELIST: true
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      # Tunable runtime settings — override any of these in .env. The defaults
+      # below match Snake SMP. (Build/identity settings are baked in the image.)
+      INIT_MEMORY: ${INIT_MEMORY:-2G}
+      MAX_MEMORY: ${MAX_MEMORY:-12G}
+      MOTD: '${MOTD:-\u00A76Snake SMP\u00A7r\n\u00A77Survival Vanilla}'
+      DIFFICULTY: ${DIFFICULTY:-hard}
+      ALLOW_FLIGHT: ${ALLOW_FLIGHT:-true}
+      ENABLE_COMMAND_BLOCK: ${ENABLE_COMMAND_BLOCK:-true}
+      SPAWN_PROTECTION: ${SPAWN_PROTECTION:-0}
+      VIEW_DISTANCE: ${VIEW_DISTANCE:-32}
+      SEED: "${SEED:--8884663891400755025}"
+      ENABLE_WHITELIST: ${ENABLE_WHITELIST:-true}
     volumes:
       - ./data:/data
-      - ./mods:/data/mods
-      - ./datapacks:/data/world/datapacks
-      - ./assets:/assets
+
+  # Backups to Cloudflare R2 with the bundled `updater backup` tool (plain
+  # unencrypted .tar.gz). Behaviour:
+  #   - daily (BACKUP_INTERVAL)
+  #   - skips a cycle if no player was seen online since the last backup
+  #   - skips a cycle if the world is byte-for-byte unchanged
+  #   - consistent: save-off + save-all flush over RCON, then save-on
+  #   - keeps only the last BACKUP_KEEP (7) backups
+  backup:
+    image: ghcr.io/arntio/mc-smp:latest
+    entrypoint: ["/usr/local/bin/updater"]
+    command: ["backup"]
+    restart: unless-stopped
+    depends_on:
+      - server
+    environment:
+      RCON_HOST: server
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      BACKUP_INTERVAL: "24h"
+      BACKUP_PLAYER_POLL: "5m"
+      BACKUP_KEEP: "7"
+      BACKUP_PREFIX: snake-smp
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID}
+      R2_BUCKET: ${R2_BUCKET}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY}
+    volumes:
+      # Read-only access to the same world data the server writes.
+      - ./data:/data:ro

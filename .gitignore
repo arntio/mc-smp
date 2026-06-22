@@ -7,3 +7,6 @@ data
 # Local build / download output
 out/
 update-summary.md
+
+# Compiled updater binary (name matches tools/ dir)
+/tools/tools

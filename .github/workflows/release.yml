@@ -22,6 +22,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+          cache-dependency-path: tools/go.sum
+
       - name: Compute CalVer tag
         id: tag
         run: |
@@ -32,15 +37,16 @@ jobs:
 
       - name: Generate notes
         run: |
+          # Same version-diff table the auto-update PR carried: compare the
+          # previous release's lock against the one being released.
           prev=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          : > old.lock
+          if [ -n "$prev" ]; then
+            git show "$prev:manifest.lock" > old.lock 2>/dev/null || : > old.lock
+          fi
+          table=$(cd tools && go run . diff --old "$GITHUB_WORKSPACE/old.lock" --new ../manifest.lock)
           {
-            echo "## Changes"
-            if [ -n "$prev" ]; then
-              git log --pretty='- %s' "$prev"..HEAD
-            else
-              git log --pretty='- %s'
-            fi
-            echo
+            echo "$table"
             echo "## Run"
             echo '```'
             echo "docker pull ghcr.io/arntio/mc-smp:${{ steps.tag.outputs.tag }}"
@@ -49,7 +55,9 @@ jobs:
 
       - name: Create release
         env:
-          GH_TOKEN: ${{ github.token }}
+          # PAT/App token (NOT github.token): releases created by the default
+          # GITHUB_TOKEN cannot trigger the publish-image `on: release` workflow.
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           gh release create "${{ steps.tag.outputs.tag }}" \
             --title "${{ steps.tag.outputs.tag }}" \

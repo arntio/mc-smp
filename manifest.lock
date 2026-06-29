@@ -10,10 +10,10 @@ mods:
       url: https://cdn.modrinth.com/data/P7dR8mSH/versions/M8Kbv865/fabric-api-0.153.0%2B26.2.jar
       sha512: 27f3cb9dd81ab5371a38f9bf01c4504f197def7fadc6443c0ed4bd6c7a129bbac433179e5033e47aad00aafc9dc99f52edf3ab6232e1fb8aafd11a555893385c
     - slug: lithium
-      version: mc26.2-0.25.0-fabric
-      filename: lithium-fabric-0.25.0+mc26.2.jar
-      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/x1OEDMlF/lithium-fabric-0.25.0%2Bmc26.2.jar
-      sha512: 15027c279850999667cee29510e4491c01d17f121604c51dd9736a5b835dee6303183fdde63637b3dd666de3b28082b1818cacd6a047fee35fced49807b5eacf
+      version: mc26.2-0.25.1-fabric
+      filename: lithium-fabric-0.25.1+mc26.2.jar
+      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/vy3clWg7/lithium-fabric-0.25.1%2Bmc26.2.jar
+      sha512: 165320d63464bf45676ff6b4437111e63547ac7f752d7b19a19cdf90083c4c941062ba82dd1dc80ba539a07a97dc08e7db81405fd3ac0998f2a374806d70651a
     - slug: ferrite-core
       version: 9.0.0-fabric
       filename: ferritecore-9.0.0-fabric.jar
@@ -25,10 +25,10 @@ mods:
       url: https://cdn.modrinth.com/data/zQhsx8KF/versions/LJbDtH2B/servux-fabric-26.2-0.11.1.jar
       sha512: 6ccc5cea50f062f283665c26101508364f66175221cee18259f044dcd42722d5332f8490f1a1c8b1c49990b013667d297de3ef31be56bee7e650d90073924017
     - slug: clickvillagers
-      version: 1.6.6+26.2-fabric
-      filename: ClickVillagers-1.6.6+26.2-fabric.jar
-      url: https://cdn.modrinth.com/data/BITzwT7B/versions/W76SNUH7/ClickVillagers-1.6.6%2B26.2-fabric.jar
-      sha512: f324e2b1c3c27af9d7659421f347c8000fc6d0411065a98f3cd8031acc863629f6a32aeca8e04bced01f416a849449bbb6de107947d857a5b7adcfd6eab60370
+      version: 1.6.7+26.2-fabric
+      filename: ClickVillagers-1.6.7+26.2-fabric.jar
+      url: https://cdn.modrinth.com/data/BITzwT7B/versions/pgrV6m6I/ClickVillagers-1.6.7%2B26.2-fabric.jar
+      sha512: c870e3ac00f96d9c07ed304ea40ff771f362e9d5d0f17eb4ed20e2d7a419ef4b8253455269d60b492eafbe853e6c7a893d62d81b1c86179e179e05517b4863c7
     - slug: carpet
       version: "26.2"
       filename: fabric-carpet-26.2+v260616.jar

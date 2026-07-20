@@ -5,30 +5,30 @@ fabric:
     installer: 1.1.1
 mods:
     - slug: fabric-api
-      version: 0.153.0+26.2
-      filename: fabric-api-0.153.0+26.2.jar
-      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/M8Kbv865/fabric-api-0.153.0%2B26.2.jar
-      sha512: 27f3cb9dd81ab5371a38f9bf01c4504f197def7fadc6443c0ed4bd6c7a129bbac433179e5033e47aad00aafc9dc99f52edf3ab6232e1fb8aafd11a555893385c
+      version: 0.155.2+26.2
+      filename: fabric-api-0.155.2+26.2.jar
+      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/lVXlbH4w/fabric-api-0.155.2%2B26.2.jar
+      sha512: cc56984378a27c5bcd56374d6ffbb27a45c6bf3355add2ac6be9817ccac5854362249bf9d0147eb271a70fda2716129204e240d53c9aa876a2a7861f4c7f880f
     - slug: lithium
-      version: mc26.2-0.25.0-fabric
-      filename: lithium-fabric-0.25.0+mc26.2.jar
-      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/x1OEDMlF/lithium-fabric-0.25.0%2Bmc26.2.jar
-      sha512: 15027c279850999667cee29510e4491c01d17f121604c51dd9736a5b835dee6303183fdde63637b3dd666de3b28082b1818cacd6a047fee35fced49807b5eacf
+      version: mc26.2-0.25.2-fabric
+      filename: lithium-fabric-0.25.2+mc26.2.jar
+      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/UPNexAfy/lithium-fabric-0.25.2%2Bmc26.2.jar
+      sha512: db676376c05b7e912cdae5aad9e51f125adc1554ae2b204599ccb598751921aedbac98e97b9cba0333b6b52488c6b75c915a7dbd50436f97800387fe1aad1c50
     - slug: ferrite-core
       version: 9.0.0-fabric
       filename: ferritecore-9.0.0-fabric.jar
       url: https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar
       sha512: d81fa97e11784c19d42f89c2f433831d007603dd7193cee45fa177e4a6a9c52b384b198586e04a0f7f63cd996fed713322578bde9a8db57e1188854ae5cbe584
     - slug: servux
-      version: 0.11.1
-      filename: servux-fabric-26.2-0.11.1.jar
-      url: https://cdn.modrinth.com/data/zQhsx8KF/versions/LJbDtH2B/servux-fabric-26.2-0.11.1.jar
-      sha512: 6ccc5cea50f062f283665c26101508364f66175221cee18259f044dcd42722d5332f8490f1a1c8b1c49990b013667d297de3ef31be56bee7e650d90073924017
+      version: 0.11.2
+      filename: servux-fabric-26.2-0.11.2.jar
+      url: https://cdn.modrinth.com/data/zQhsx8KF/versions/qMld6z1t/servux-fabric-26.2-0.11.2.jar
+      sha512: 28690e1fb4b6b7acba032297b0165df9d46cb43c56144e9afb94d5de37bcb0a302316cbb25979d0d1983008f4d1137ce6be859c35dbd5eee25dd018a8e8e17bb
     - slug: clickvillagers
-      version: 1.6.6+26.2-fabric
-      filename: ClickVillagers-1.6.6+26.2-fabric.jar
-      url: https://cdn.modrinth.com/data/BITzwT7B/versions/W76SNUH7/ClickVillagers-1.6.6%2B26.2-fabric.jar
-      sha512: f324e2b1c3c27af9d7659421f347c8000fc6d0411065a98f3cd8031acc863629f6a32aeca8e04bced01f416a849449bbb6de107947d857a5b7adcfd6eab60370
+      version: 1.6.7+26.2-fabric
+      filename: ClickVillagers-1.6.7+26.2-fabric.jar
+      url: https://cdn.modrinth.com/data/BITzwT7B/versions/pgrV6m6I/ClickVillagers-1.6.7%2B26.2-fabric.jar
+      sha512: c870e3ac00f96d9c07ed304ea40ff771f362e9d5d0f17eb4ed20e2d7a419ef4b8253455269d60b492eafbe853e6c7a893d62d81b1c86179e179e05517b4863c7
     - slug: carpet
       version: "26.2"
       filename: fabric-carpet-26.2+v260616.jar

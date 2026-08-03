@@ -2,18 +2,18 @@
 minecraft: "26.2"
 fabric:
     loader: 0.19.3
-    installer: 1.1.1
+    installer: 1.1.2
 mods:
     - slug: fabric-api
-      version: 0.155.2+26.2
-      filename: fabric-api-0.155.2+26.2.jar
-      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/lVXlbH4w/fabric-api-0.155.2%2B26.2.jar
-      sha512: cc56984378a27c5bcd56374d6ffbb27a45c6bf3355add2ac6be9817ccac5854362249bf9d0147eb271a70fda2716129204e240d53c9aa876a2a7861f4c7f880f
+      version: 0.156.0+26.2
+      filename: fabric-api-0.156.0+26.2.jar
+      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/3gT0I5vt/fabric-api-0.156.0%2B26.2.jar
+      sha512: 5bbc436d07f836cd90b88287e2ef27f1cd67e26185b2cd4a62cb2ae850eb74e5edbbc7ba7772e92ea91ebf35b263f8815421e3d5e7d2836cb28993ba1d534816
     - slug: lithium
-      version: mc26.2-0.25.2-fabric
-      filename: lithium-fabric-0.25.2+mc26.2.jar
-      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/UPNexAfy/lithium-fabric-0.25.2%2Bmc26.2.jar
-      sha512: db676376c05b7e912cdae5aad9e51f125adc1554ae2b204599ccb598751921aedbac98e97b9cba0333b6b52488c6b75c915a7dbd50436f97800387fe1aad1c50
+      version: mc26.2-0.25.3-fabric
+      filename: lithium-fabric-0.25.3+mc26.2.jar
+      url: https://cdn.modrinth.com/data/gvQqBUqZ/versions/f7vZ0VWU/lithium-fabric-0.25.3%2Bmc26.2.jar
+      sha512: 148b638f3c6229fbaf487120a2344a0af5e411a5aa6533d5db9d75da0a8c0d8304f63eb4cca13f4d03b2c9b4c23d559dd74c1d832422ef8a3087bd005e62a8bd
     - slug: ferrite-core
       version: 9.0.0-fabric
       filename: ferritecore-9.0.0-fabric.jar

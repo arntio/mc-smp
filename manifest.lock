@@ -5,10 +5,10 @@ fabric:
     installer: 1.1.2
 mods:
     - slug: fabric-api
-      version: 0.157.0+26.2
-      filename: fabric-api-0.157.0+26.2.jar
-      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/vmQp7ixA/fabric-api-0.157.0%2B26.2.jar
-      sha512: 4ebec489f2b2ce621ebebb2d1b7e9714b6fd288ebdb4e287d767cde57612cf1d3d1d4f51daf7e7ec9541fa146df6bde4978ab98a29637ced6d9bc2f3c4217650
+      version: 0.158.0+26.2
+      filename: fabric-api-0.158.0+26.2.jar
+      url: https://cdn.modrinth.com/data/P7dR8mSH/versions/NqwNSxwA/fabric-api-0.158.0%2B26.2.jar
+      sha512: 4c2c1ebe74ffd54875a01ff371b53ba3d8674ac98d561f7dae02a96d3d37fbdbc5f5abc6e820f73b6154d6f873ddd05a442b0998ed2d456863dc0ad972e040a6
     - slug: lithium
       version: mc26.2-0.25.3-fabric
       filename: lithium-fabric-0.25.3+mc26.2.jar
@@ -20,10 +20,10 @@ mods:
       url: https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar
       sha512: d81fa97e11784c19d42f89c2f433831d007603dd7193cee45fa177e4a6a9c52b384b198586e04a0f7f63cd996fed713322578bde9a8db57e1188854ae5cbe584
     - slug: servux
-      version: 0.11.2
-      filename: servux-fabric-26.2-0.11.2.jar
-      url: https://cdn.modrinth.com/data/zQhsx8KF/versions/qMld6z1t/servux-fabric-26.2-0.11.2.jar
-      sha512: 28690e1fb4b6b7acba032297b0165df9d46cb43c56144e9afb94d5de37bcb0a302316cbb25979d0d1983008f4d1137ce6be859c35dbd5eee25dd018a8e8e17bb
+      version: 0.11.3
+      filename: servux-fabric-26.2-0.11.3.jar
+      url: https://cdn.modrinth.com/data/zQhsx8KF/versions/Er2wlain/servux-fabric-26.2-0.11.3.jar
+      sha512: 42ec8769ba50ecf1ac6b3da4caa554d5dad6e8226ebb4faf0918a483c0a7823e3a1a69ae39c1157029209b4272df6a6fb025c5b797fd0d4402ab9ddcc800ae67
     - slug: clickvillagers
       version: 1.6.7+26.2-fabric
       filename: ClickVillagers-1.6.7+26.2-fabric.jar
@@ -99,7 +99,7 @@ vanillatweaks:
           version: 1.0.9
         - name: timber
           category: Convenience
-          version: 2.1.20
+          version: 2.1.21
         - name: unlock all recipes
           category: Convenience
           version: 2.0.18
